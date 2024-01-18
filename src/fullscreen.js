@@ -1,9 +1,8 @@
 /* global L:false */
-import App from 'geowiki-viewer/src/App'
 import modulekitLang from 'modulekit-lang'
 
 let app
-App.addExtension({
+module.exports = {
   id: 'fullscreen',
   initFun: (_app, callback) => {
     app = _app
@@ -12,7 +11,7 @@ App.addExtension({
     })
     callback()
   }
-})
+}
 
 const FullscreenControl = L.Control.extend({
   options: {
