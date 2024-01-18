@@ -1,0 +1,7 @@
+{
+  "main": "src/fullscreen.js",
+  "dependencies": {
+    "geowiki-viewer": "*",
+    "modulekit-lang": "*"
+  }
+}
