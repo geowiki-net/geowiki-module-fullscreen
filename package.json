@@ -1,4 +1,5 @@
 {
+  "name": "geowiki-module-fullscreen",
   "main": "src/fullscreen.js",
   "dependencies": {
     "geowiki-viewer": "*",
