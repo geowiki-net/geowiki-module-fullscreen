@@ -4,11 +4,10 @@ import modulekitLang from 'modulekit-lang'
 let app
 module.exports = {
   id: 'fullscreen',
+  requireExtensions: ['map'],
   initFun: (_app, callback) => {
     app = _app
-    app.on('init', () => {
-      app.map.addControl(new FullscreenControl())
-    })
+    app.map.addControl(new FullscreenControl())
     callback()
   }
 }
