@@ -1,5 +1,6 @@
 /* global L:false */
 import modulekitLang from 'modulekit-lang'
+import './fullscreen.css'
 
 let app
 module.exports = {
