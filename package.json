@@ -1,5 +1,5 @@
 {
-  "name": "geowiki-module-fullscreen",
+  "name": "@geowiki-net/geowiki-module-fullscreen",
   "main": "src/fullscreen.js",
   "dependencies": {
     "modulekit-lang": "*"
