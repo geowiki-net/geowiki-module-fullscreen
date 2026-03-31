@@ -6,10 +6,12 @@ module.exports = {
   id: 'fullscreen',
   scope: 'geowiki-app',
   requireModules: ['map'],
-  appInit: (_app, callback) => {
+  appInit: (_app) => {
     app = _app
-    app.map.addControl(new FullscreenControl())
-    callback()
+
+    app.on('map-init', map => {
+      map.addControl(new FullscreenControl())
+    })
   }
 }
 
