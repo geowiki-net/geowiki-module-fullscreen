@@ -5,6 +5,7 @@ import './fullscreen.css'
 
 let app
 let mode = 'screen'
+let hasFullscreen
 
 module.exports = {
   id: 'fullscreen',
@@ -13,13 +14,16 @@ module.exports = {
   appInit: (_app) => {
     app = _app
 
-    mode = 'screen'
+    hasFullscreen = !!document.body.requestFullscreen
+    mode = hasFullscreen ? 'screen' : 'window'
 
     app.on('map-init', map => {
       map.addControl(new FullscreenControl())
     })
 
     app.on('options-form', form => {
+      if (!hasFullscreen) { return }
+
       form.fullscreenMode = {
         name: lang('options:fullscreenMode'),
         type: 'select',
