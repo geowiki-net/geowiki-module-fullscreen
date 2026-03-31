@@ -1,8 +1,11 @@
 /* global L:false */
 import modulekitLang from 'modulekit-lang'
+const lang = modulekitLang.lang
 import './fullscreen.css'
 
 let app
+let mode = 'screen'
+
 module.exports = {
   id: 'fullscreen',
   scope: 'geowiki-app',
@@ -10,8 +13,26 @@ module.exports = {
   appInit: (_app) => {
     app = _app
 
+    mode = 'screen'
+
     app.on('map-init', map => {
       map.addControl(new FullscreenControl())
+    })
+
+    app.on('options-form', form => {
+      form.fullscreenMode = {
+        name: lang('options:fullscreenMode'),
+        type: 'select',
+        placeholder: lang('default'),
+        values: {
+          'screen': lang('options:fullscreenMode:screen'),
+          'window': lang('options:fullscreenMode:window'),
+        }
+      }
+    })
+
+    app.on('options-apply', options => {
+      mode = options.fullscreenMode
     })
   }
 }
@@ -29,7 +50,7 @@ const FullscreenControl = L.Control.extend({
     container.onclick = function () {
       const dom = document.body
 
-      if (dom.requestFullscreen) {
+      if (options.fullscreenMode === 'screen') {
         if (document.fullscreenElement) {
           document.exitFullscreen()
 
