@@ -31,12 +31,18 @@ const FullscreenControl = L.Control.extend({
       if (dom.requestFullscreen) {
         if (document.fullscreenElement) {
           document.exitFullscreen()
+
+          app.emit('fullscreen-deactivate', map)
         } else {
           dom.requestFullscreen()
           document.body.classList.add('fullscreen')
+
+          app.emit('fullscreen-activate', map)
         }
       } else {
         document.body.classList.toggle('fullscreen')
+
+        app.emit('fullscreen-' + (document.body.classList.contains('fullscreen') ? 'activate' : 'deactivate'), map)
       }
 
       app.map.invalidateSize()
@@ -47,6 +53,8 @@ const FullscreenControl = L.Control.extend({
       if (!document.fullscreenElement) {
         document.body.classList.remove('fullscreen')
         app.map.invalidateSize()
+
+        app.emit('fullscreen-deactivate', map)
       }
     })
 
