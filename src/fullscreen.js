@@ -57,6 +57,7 @@ const FullscreenControl = L.Control.extend({
       if (mode === 'screen') {
         if (document.fullscreenElement) {
           document.exitFullscreen()
+          document.body.classList.remove('fullscreen')
 
           app.emit('fullscreen-deactivate', map)
         } else {
