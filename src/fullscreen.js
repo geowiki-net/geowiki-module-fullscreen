@@ -36,7 +36,7 @@ module.exports = {
     })
 
     app.on('options-apply', options => {
-      mode = options.fullscreenMode
+      mode = options.fullscreenMode || (hasFullscreen ? 'screen' : 'window')
     })
   }
 }
@@ -54,7 +54,7 @@ const FullscreenControl = L.Control.extend({
     container.onclick = function () {
       const dom = document.body
 
-      if (options.fullscreenMode === 'screen') {
+      if (mode === 'screen') {
         if (document.fullscreenElement) {
           document.exitFullscreen()
 
